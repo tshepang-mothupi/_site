@@ -1,21 +1,24 @@
 project:
   title: "Project One"
-  type: book
-  output-dir: _output
+  type: website  # Change this from "book" to "website"
+  output-dir: _output  # Keeps output organized
 
-book:
-  title: Submission
-  chapters: 
-    - index.qmd
-    - prac-day-1.qmd
-    - prac2.qmd
-    - prac-day-four.qmd
+website:
+  title: "Submission"  # Website title
+  navbar:  # Defines the navigation menu
+    left:
+      - href: index.qmd
+        text: Home
+      - href: prac-day-1.qmd
+        text: Practice Day 1
+      - href: prac2.qmd
+        text: Practice Day 2
+      - href: prac-day-four.qmd
+        text: Practice Day 4
 
-
-format: 
+format:
   html:
-    code-fold: true
-    number-sections: false
+    theme: default
+    toc: true  # Enables a Table of Contents on the side
 
 editor: visual
-

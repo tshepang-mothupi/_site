@@ -91,17 +91,22 @@ flights |> group_by(month, carrier)|> summarise(avg_dep_delay=mean(dep_delay, na
 # Question 5
 
 ```{r}
+total_flight <- flights |> nrow()
+
 total_delayed <- flights|>filter(dep_delay>0)|>
   nrow()
 
 delayed_arrival_timely <- flights |>
   filter(dep_delay > 0 & arr_delay <= 0) |> count()
   
-paste0("Proportion of delayed but on arrival on time: ", 100*round(delayed_arrival_timely/total_delayed,4),"%")
+paste0("Proportion flights delayed but on arrival on time out of the total delayed flights: ", 100*round(delayed_arrival_timely/total_delayed,4),"%")
+paste0("Proportion flights delayed but on arrival on time out of the all the flights: ", 100*round(delayed_arrival_timely/total_flight,4),"%")
 
 ```
 
 # Question 6
+
+### 6.1
 
 ```{r}
 library(dplyr)
@@ -114,12 +119,14 @@ multiple_airline_routes
 
 ```
 
+### 6.2
+
 ```{r}
 #2. Calculate the average arrival delay for each airline, exlcuding NAs
 flights |> group_by(origin, dest)|>
   filter(n_distinct(carrier)>1)|>
   group_by(origin, dest, carrier)|>
-  summarise(avg_delay = mean(dep_delay, na.rm=TRUE, .groups = "drop"))|>
+  summarise(avg_delay = mean(arr_delay, na.rm=TRUE, .groups = "drop"))|>
   left_join(airlines)|>
   relocate(name, .after = "carrier")
 

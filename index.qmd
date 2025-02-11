@@ -13,6 +13,8 @@ editor: visual
 
 # STATISTICAL COMPUTING
 
+Github repository: <https://github.com/tshepang-mothupi/_site.git>
+
 ## Overview
 
 This Quarto project contains solutions to the practical questions outlined below. Each practical is answered in its own \`.qmd\` file, and the project is hosted on GitHub for peer assessment.
