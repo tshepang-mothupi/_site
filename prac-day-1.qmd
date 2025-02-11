@@ -32,13 +32,13 @@ cleaned_temp_data <- temp_data[!is.na(temp_data)]
 ozone_data <- airquality$Ozone
 cleaned_ozone_data <-  ozone_data[!is.na(temp_data)]
 
-cat("The mean temperature is", mean(cleaned_temp_data), "units, while the mean ozone level is", mean(cleaned_ozone_data), "units.\n\n")
+cat("The mean temperature is", mean(cleaned_temp_data), "units, while the mean ozone level is", mean(ozone_data,na.rm = TRUE), "units.\n\n")
 
-cat("The standard deviation of the temperature is", sd(cleaned_temp_data), "units, while the standard deviation of the ozone level is", sd(cleaned_ozone_data), "units.\n\n")
+cat("The standard deviation of the temperature is", sd(cleaned_temp_data), "units, while the standard deviation of the ozone level is", sd(ozone_data, na.rm = TRUE), "units.\n\n")
 
-cat("The minimum temperature is", min(cleaned_temp_data), "units, while the minimum ozone level is", min(cleaned_ozone_data), "units.\n\n")
+cat("The minimum temperature is", min(cleaned_temp_data), "units, while the minimum ozone level is", min(ozone_data, na.rm = TRUE), "units.\n\n")
 
-cat("The maximum temperature is", max(cleaned_temp_data), "units, while the maximum ozone level is", max(cleaned_ozone_data), "units.\n\n")
+cat("The maximum temperature is", max(cleaned_temp_data), "units, while the maximum ozone level is", max(ozone_data, na.rm = TRUE), "units.\n\n")
 ```
 
 ### Question 3
@@ -51,10 +51,10 @@ ols_estimates <- function(X, Y){
   Y_matrix <- Y
   
   # Beta estimates
-  beta_hat <- solve(t(X_matrix)%*%X_matrix)%*%t(X_matrix)%*%Y_matrix
+  beta_hat <- solve(t(X_matrix) %*% X_matrix) %*% t(X_matrix) %*% Y_matrix
   
   # Residuals
-  Y_hat <- X_matrix%*%beta_hat
+  Y_hat <- X_matrix %*% beta_hat
   residuals <- Y_matrix - Y_hat
   
   
@@ -64,7 +64,7 @@ ols_estimates <- function(X, Y){
   res_var <- sum(residuals^2)/(n-p)
   
   # Standard errors of the Betas
-  cov_matrix <- res_var * solve(t(X_matrix)%*%X_matrix)
+  cov_matrix <- res_var * solve(t(X_matrix) %*% X_matrix)
   std_errors <- sqrt(diag(cov_matrix))
   
   # t-stats

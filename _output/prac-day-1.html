@@ -285,31 +285,31 @@ These are rows: 5, 6, 10, 11, 25, 26, 27, 32, 33, 34, 35, 36, 37, 39, 42, 43, 45
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>ozone_data <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Ozone</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>cleaned_ozone_data <span class="ot">&lt;-</span>  ozone_data[<span class="sc">!</span><span class="fu">is.na</span>(temp_data)]</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"The mean temperature is"</span>, <span class="fu">mean</span>(cleaned_temp_data), <span class="st">"units, while the mean ozone level is"</span>, <span class="fu">mean</span>(cleaned_ozone_data), <span class="st">"units.</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"The mean temperature is"</span>, <span class="fu">mean</span>(cleaned_temp_data), <span class="st">"units, while the mean ozone level is"</span>, <span class="fu">mean</span>(ozone_data,<span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">"units.</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>The mean temperature is 77.88235 units, while the mean ozone level is NA units.</code></pre>
+<pre><code>The mean temperature is 77.88235 units, while the mean ozone level is 42.12931 units.</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"The standard deviation of the temperature is"</span>, <span class="fu">sd</span>(cleaned_temp_data), <span class="st">"units, while the standard deviation of the ozone level is"</span>, <span class="fu">sd</span>(cleaned_ozone_data), <span class="st">"units.</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"The standard deviation of the temperature is"</span>, <span class="fu">sd</span>(cleaned_temp_data), <span class="st">"units, while the standard deviation of the ozone level is"</span>, <span class="fu">sd</span>(ozone_data, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">"units.</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>The standard deviation of the temperature is 9.46527 units, while the standard deviation of the ozone level is NA units.</code></pre>
+<pre><code>The standard deviation of the temperature is 9.46527 units, while the standard deviation of the ozone level is 32.98788 units.</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"The minimum temperature is"</span>, <span class="fu">min</span>(cleaned_temp_data), <span class="st">"units, while the minimum ozone level is"</span>, <span class="fu">min</span>(cleaned_ozone_data), <span class="st">"units.</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"The minimum temperature is"</span>, <span class="fu">min</span>(cleaned_temp_data), <span class="st">"units, while the minimum ozone level is"</span>, <span class="fu">min</span>(ozone_data, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">"units.</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>The minimum temperature is 56 units, while the minimum ozone level is NA units.</code></pre>
+<pre><code>The minimum temperature is 56 units, while the minimum ozone level is 1 units.</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"The maximum temperature is"</span>, <span class="fu">max</span>(cleaned_temp_data), <span class="st">"units, while the maximum ozone level is"</span>, <span class="fu">max</span>(cleaned_ozone_data), <span class="st">"units.</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"The maximum temperature is"</span>, <span class="fu">max</span>(cleaned_temp_data), <span class="st">"units, while the maximum ozone level is"</span>, <span class="fu">max</span>(ozone_data, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">"units.</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>The maximum temperature is 97 units, while the maximum ozone level is NA units.</code></pre>
+<pre><code>The maximum temperature is 97 units, while the maximum ozone level is 168 units.</code></pre>
 </div>
 </div>
 </section>
@@ -325,10 +325,10 @@ These are rows: 5, 6, 10, 11, 25, 26, 27, 32, 33, 34, 35, 36, 37, 39, 42, 43, 45
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  Y_matrix <span class="ot">&lt;-</span> Y</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Beta estimates</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  beta_hat <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X_matrix)<span class="sc">%*%</span>X_matrix)<span class="sc">%*%</span><span class="fu">t</span>(X_matrix)<span class="sc">%*%</span>Y_matrix</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  beta_hat <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X_matrix) <span class="sc">%*%</span> X_matrix) <span class="sc">%*%</span> <span class="fu">t</span>(X_matrix) <span class="sc">%*%</span> Y_matrix</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Residuals</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  Y_hat <span class="ot">&lt;-</span> X_matrix<span class="sc">%*%</span>beta_hat</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  Y_hat <span class="ot">&lt;-</span> X_matrix <span class="sc">%*%</span> beta_hat</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  residuals <span class="ot">&lt;-</span> Y_matrix <span class="sc">-</span> Y_hat</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -338,7 +338,7 @@ These are rows: 5, 6, 10, 11, 25, 26, 27, 32, 33, 34, 35, 36, 37, 39, 42, 43, 45
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  res_var <span class="ot">&lt;-</span> <span class="fu">sum</span>(residuals<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(n<span class="sc">-</span>p)</span>
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Standard errors of the Betas</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  cov_matrix <span class="ot">&lt;-</span> res_var <span class="sc">*</span> <span class="fu">solve</span>(<span class="fu">t</span>(X_matrix)<span class="sc">%*%</span>X_matrix)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  cov_matrix <span class="ot">&lt;-</span> res_var <span class="sc">*</span> <span class="fu">solve</span>(<span class="fu">t</span>(X_matrix) <span class="sc">%*%</span> X_matrix)</span>
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  std_errors <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(cov_matrix))</span>
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># t-stats</span></span>

@@ -119,7 +119,7 @@ multiple_airline_routes
 flights |> group_by(origin, dest)|>
   filter(n_distinct(carrier)>1)|>
   group_by(origin, dest, carrier)|>
-  summarise(avg_delay = mean(dep_delay, na.rm=TRUE))|>
+  summarise(avg_delay = mean(dep_delay, na.rm=TRUE, .groups = "drop"))|>
   left_join(airlines)|>
   relocate(name, .after = "carrier")
 
@@ -145,7 +145,7 @@ flights |> group_by(origin, dest)|>
 
 ```
 
-### 6.3
+### 6.4
 
 ```{r}
 #4. 
@@ -171,11 +171,11 @@ flights |> group_by(origin, dest)|>
 
 ### 6.5
 
-```{r}
-#5.
+-   If an airline has priority access to certain gates or better scheduling slots, it may experience fewer delays.
 
+<!-- -->
 
-```
+-   Airlines with more flights at a particular airport may have dedicated resources, reducing taxiing and waiting times.
 
 # Question 7
 
@@ -290,3 +290,9 @@ skim(data)
 UtilsDataRSV::view_cols(data)
 
 ```
+
+-   There are 3 unique genders as show by skim() and this is because we have a typo for the gender variable, "female" is misspelled as "femal".
+
+-   There is another typo for the disease_status, "healthy" is misspelled as "Healthy".
+
+-   Glucose and Height have NA's.
