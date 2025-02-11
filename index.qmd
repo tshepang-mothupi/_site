@@ -1,0 +1,70 @@
+---
+title: "Practical One"
+author: "Tshepang Mothupi"
+date: "2025-02-06"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+    toc-location: left
+editor: visual
+---
+
+# STATISTICAL COMPUTING
+
+## Overview
+
+This Quarto project contains solutions to the practical questions outlined below. Each practical is answered in its own \`.qmd\` file, and the project is hosted on GitHub for peer assessment.
+
+The following practicals are included:
+
+\- [Practical One](prac-day-1.qmd): Data exploration and linear regression using matrix calculations.
+
+\- [Lowess Practical](prac2.qmd): Implementing and comparing locally weighted scatterplot smoothing (Lowess).
+
+\- [Practical Day Five](prac-day-four.qmd): Data visualization exercises using \`ggplot2\` and \`palmerpenguins\`.
+
+------------------------------------------------------------------------
+
+## Practical One
+
+This practical involves fundamental data exploration and regression techniques:
+
+1\. Identify rows in the \`airquality\` dataset with missing values.
+
+2\. Compute the mean, standard deviation, minimum, and maximum for temperature and ozone levels.
+
+3\. Perform linear regression using matrix calculations and compare results with \`lm()\`.
+
+Refer to [Practical One](prac-day-1.qmd) for detailed solutions.
+
+------------------------------------------------------------------------
+
+## Lowess Practical
+
+This section introduces Lowess smoothing, a non-parametric regression technique:
+
+1\. Understand the Lowess algorithm and its steps (data selection, span, weighting, regression).
+
+2\. Implement a custom Lowess function in R.
+
+3\. Compare the custom implementation with R’s built-in \`lowess()\` function.
+
+4\. Visualize and compare the smoothed outputs.
+
+Refer to [Lowess Practical](prac2.qmd) for implementation details.
+
+------------------------------------------------------------------------
+
+## Practical Day Five
+
+This practical focuses on visualization techniques:
+
+1\. Simulate and plot a normal distribution using \`ggplot2\`, overlaying the true density function.
+
+2\. Generate a well-formatted two-way frequency table of penguin species and island locations.
+
+3\. Plot flipper length distributions using boxplots, density plots, and faceted views.
+
+Refer to [Practical Day Five](prac-day-four.qmd) for detailed solutions.

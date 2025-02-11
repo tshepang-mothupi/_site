@@ -1,0 +1,21 @@
+project:
+  title: "Project One"
+  type: book
+  output-dir: _output
+
+book:
+  title: Submission
+  chapters: 
+    - index.qmd
+    - prac-day-1.qmd
+    - prac2.qmd
+    - prac-day-four.qmd
+
+
+format: 
+  html:
+    code-fold: true
+    number-sections: false
+
+editor: visual
+

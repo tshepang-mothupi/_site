@@ -1,0 +1,101 @@
+---
+title: "Part 2: Lowess Project"
+format: html
+---
+
+```{r}
+library("ggplot2")
+
+```
+
+### Question 1
+
+```{r}
+set.seed(1)
+
+x <- 1:100
+e <- rnorm(100, mean = 0, sd = 0.2)
+y <- sin(x/10) + e
+
+```
+
+### Question 2
+
+```{r}
+customLowess <- function(x, y, f = 0.2){
+  # Number of observations
+  n <- length(x)
+  
+  # Size of closed neighbourhood
+  k <- floor(f * n)
+  
+  # Smoothed y values
+  y_smoothed <- numeric(n)
+  
+  for (i in 1:n){
+    # Distance from current point
+    distances <- abs(x[i] - x)
+    
+    # Take the sorted positions of the points
+    sorted_distance_positions <- order(distances)
+    
+    # Take the positions of the nearest neighbours
+    neighbour_positions <- sorted_distance_positions[1:k]
+    
+    # Maximum distance
+    neighbour_distances <- distances[neighbour_positions]
+    d_max <- max(neighbour_distances)
+    
+    # Compute weights
+    w <- (1 - (distances[neighbour_positions] / d_max)^3)^3
+    
+    # Weighted regression
+    x_neighbourhood <- cbind(1, x[neighbour_positions])
+    y_neighbourhood <- y[neighbour_positions]
+    W <- diag(w)
+    beta_hat <- solve(t(x_neighbourhood) %*% W %*% x_neighbourhood) %*% t(x_neighbourhood) %*% W %*% y_neighbourhood
+    
+    y_smooth <- c(1, x[i]) %*% beta_hat
+    
+    y_smoothed[i] <- y_smooth
+  }
+  
+  results <- data.frame(
+    x_new = x,
+    y_new = y_smoothed
+  )
+  
+  return(results)
+}
+
+```
+
+### Question 3
+
+```{r}
+lowess_results <- data.frame(lowess(x,y,f=0.2,iter=0))
+
+customLowess_results <- customLowess(x,y)
+
+print(lowess_results)
+print(customLowess_results)
+```
+
+#### Lowess function plot
+
+```{r}
+plot(x,y, xlab = "Independent variable (x)", ylab = "Dependent variable (y)", main = "Lowess function plot (f=0.2 and iter = 0)")
+
+lines(lowess_results$x, lowess_results$y, col = "blue")
+```
+
+#### Custom Lowess function plot
+
+```{r}
+plot(x,y,xlab = "Independent variable (x)", ylab = "Dependent variable (y)", main = "Custom lowess function plot (f=default=0.2)")
+
+
+lines(customLowess_results$x, customLowess_results$y, col = "purple")
+```
+
+Therefore the functions are the same.

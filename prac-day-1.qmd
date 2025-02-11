@@ -1,0 +1,101 @@
+---
+title: "Part 1: Practical Day One"
+format: html
+---
+
+### Question 1
+
+```{r}
+df <- airquality
+
+df_NA <- df[apply(df,1,anyNA), ]
+
+
+df_NA
+```
+
+```{r}
+num_NA_rows <- nrow(df_NA)
+list_NA_rows <- which(apply(df,1,anyNA))
+
+
+cat("There are", num_NA_rows, "rows with missing values in the dataset\n\nThese are rows:", paste(list_NA_rows, collapse = ", "))
+```
+
+### Question 2
+
+```{r}
+temp_data <- airquality$Temp
+cleaned_temp_data <- temp_data[!is.na(temp_data)]
+
+
+ozone_data <- airquality$Ozone
+cleaned_ozone_data <-  ozone_data[!is.na(temp_data)]
+
+cat("The mean temperature is", mean(cleaned_temp_data), "units, while the mean ozone level is", mean(cleaned_ozone_data), "units.\n\n")
+
+cat("The standard deviation of the temperature is", sd(cleaned_temp_data), "units, while the standard deviation of the ozone level is", sd(cleaned_ozone_data), "units.\n\n")
+
+cat("The minimum temperature is", min(cleaned_temp_data), "units, while the minimum ozone level is", min(cleaned_ozone_data), "units.\n\n")
+
+cat("The maximum temperature is", max(cleaned_temp_data), "units, while the maximum ozone level is", max(cleaned_ozone_data), "units.\n\n")
+```
+
+### Question 3
+
+#### Estimates using first principles
+
+```{r}
+ols_estimates <- function(X, Y){
+  X_matrix <- cbind(1,X)
+  Y_matrix <- Y
+  
+  # Beta estimates
+  beta_hat <- solve(t(X_matrix)%*%X_matrix)%*%t(X_matrix)%*%Y_matrix
+  
+  # Residuals
+  Y_hat <- X_matrix%*%beta_hat
+  residuals <- Y_matrix - Y_hat
+  
+  
+  # Residual variance
+  n <- nrow(X_matrix)
+  p <- ncol(X_matrix)
+  res_var <- sum(residuals^2)/(n-p)
+  
+  # Standard errors of the Betas
+  cov_matrix <- res_var * solve(t(X_matrix)%*%X_matrix)
+  std_errors <- sqrt(diag(cov_matrix))
+  
+  # t-stats
+  t_values <- beta_hat/std_errors
+  
+  #p-values
+  p_values <- 2 * (1-pt(abs(t_values), df=n-p))
+  
+  results <- data.frame(
+    beta <- beta_hat,
+    std_error <- std_errors,
+    t_stat <- t_values,
+    p_value <- p_values
+  )
+  
+  return(results)
+  
+}
+
+
+ols_results <- ols_estimates(cars$speed, cars$dist)
+print(ols_results)
+```
+
+### Question 4
+
+#### Estimates using lm() function
+
+```{r}
+model <- lm(dist ~ speed, cars)
+summary(model)
+```
+
+Therefore the estimates match.
